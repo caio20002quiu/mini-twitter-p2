@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Twitter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Tela de Login -->
+        <div id="loginScreen" class="screen active">
+            <div class="form-container">
+                <div class="logo-container">
+                    <i class="fab fa-twitter"></i>
+                    <h1>Mini Twitter</h1>
+                </div>
+                <h2>Entrar</h2>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="loginEmail" required placeholder="Seu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">
+                            <i class="fas fa-lock"></i> Senha
+                        </label>
+                        <input type="password" id="loginPassword" required placeholder="Sua senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
+                </form>
+                
+                <div class="form-footer">
+                    <p>Não tem uma conta?</p>
+                    <button id="showRegisterBtn" class="btn btn-secondary">
+                        <i class="fas fa-user-plus"></i> Criar conta
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Registro -->
+        <div id="registerScreen" class="screen">
+            <div class="form-container">
+                <div class="logo-container">
+                    <i class="fab fa-twitter"></i>
+                    <h1>Mini Twitter</h1>
+                </div>
+                <h2>Criar Conta</h2>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">
+                            <i class="fas fa-user"></i> Nome de usuário
+                        </label>
+                        <input type="text" id="registerUsername" required placeholder="Escolha um nome de usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="registerEmail" required placeholder="Seu melhor email">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">
+                            <i class="fas fa-lock"></i> Senha
+                        </label>
+                        <input type="password" id="registerPassword" required placeholder="Crie uma senha segura">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Criar conta
+                    </button>
+                </form>
+                
+                <div class="form-footer">
+                    <p>Já tem uma conta?</p>
+                    <button id="showLoginBtn" class="btn btn-secondary">
+                        <i class="fas fa-sign-in-alt"></i> Fazer login
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela Principal -->
+        <div id="mainScreen" class="screen">
+            <div class="layout-wrapper">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-logo">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <nav class="sidebar-menu">
+                        <a class="sidebar-item active" href="#"><i class="fas fa-home"></i> <span>Home</span></a>
+                        <a class="sidebar-item" href="#"><i class="fas fa-hashtag"></i> <span>Explorar</span></a>
+                        <a class="sidebar-item" href="#"><i class="far fa-bell"></i> <span>Notificações</span></a>
+                        <a class="sidebar-item" href="#"><i class="far fa-envelope"></i> <span>Mensagens</span></a>
+                        <a class="sidebar-item" href="#"><i class="far fa-bookmark"></i> <span>Favoritos</span></a>
+                        <a class="sidebar-item" href="#"><i class="fas fa-list"></i> <span>Listas</span></a>
+                        <a class="sidebar-item" href="#"><i class="far fa-user"></i> <span>Perfil</span></a>
+                    </nav>
+                    <button class="btn btn-primary sidebar-tweet"><i class="fas fa-feather-alt"></i> <span>Tweetar</span></button>
+                </aside>
+                <!-- Conteúdo Central -->
+                <div class="main-content">
+                    <!-- Header -->
+                    <header class="header">
+                        <div class="header-content">
+                            <div class="logo">
+                                <i class="fab fa-twitter"></i>
+                                <h1>Mini Twitter</h1>
+                            </div>
+                            <div class="user-info">
+                                <span id="headerUsername" class="username"></span>
+                                <div class="theme-toggle" id="themeToggle">🌙 Tema</div>
+                                <button id="logoutBtn" class="btn btn-logout">
+                                    <i class="fas fa-sign-out-alt"></i> Sair
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Navegação -->
+                    <nav class="nav">
+                        <div class="nav-item active" data-tab="feed">
+                            <i class="fas fa-home"></i> Feed
+                        </div>
+                        <div class="nav-item" data-tab="profile">
+                            <i class="fas fa-user"></i> Perfil
+                        </div>
+                    </nav>
+
+                    <!-- Feed -->
+                    <div id="feedTab" class="tab-content active">
+                        <!-- Criar postagem -->
+                        <div class="compose-tweet">
+                            <textarea id="tweetContent" maxlength="280" placeholder="O que está acontecendo?"></textarea> <!-- max 280 caracteres -->
+                            <div class="compose-actions">
+                                <span id="charCount" class="char-count">0/280</span>
+                                <button id="tweetBtn" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Tweetar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Feed de postagens -->
+                        <div id="tweetsFeed" class="tweets-feed">
+                            <div class="loading">
+                                <i class="fas fa-spinner fa-spin"></i> Carregando postagens...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perfil -->
+                    <div id="profileTab" class="tab-content">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-details">
+                                <div class="profile-username" id="profileUsername"></div>
+                                <div class="profile-email" id="profileEmail"></div>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <div class="stat-number" id="postCount">0</div>
+                                        <div class="stat-label">Posts</div>
+                                    </div>
+                                    <div class="stat">
+                                        <div class="stat-number" id="memberSince"></div>
+                                        <div class="stat-label">Membro desde</div>
+                                    </div>
+                                </div>
+                                <button id="editProfileBtn" class="btn btn-secondary">
+                                    <i class="fas fa-edit"></i> Editar Perfil
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Minhas postagens -->
+                        <div id="myTweetsFeed" class="tweets-feed">
+                            <div class="loading">
+                                <i class="fas fa-spinner fa-spin"></i> Carregando suas postagens...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de edição de perfil -->
+                    <div id="editProfileModal" class="modal hidden">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Editar Perfil</h3>
+                                <button id="cancelEditBtn" class="btn-close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <form id="editProfileForm">
+                                <div class="form-group">
+                                    <label for="editUsername">
+                                        <i class="fas fa-user"></i> Nome de usuário
+                                    </label>
+                                    <input type="text" id="editUsername" required placeholder="Novo nome de usuário">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmail">
+                                        <i class="fas fa-envelope"></i> Email
+                                    </label>
+                                    <input type="email" id="editEmail" required placeholder="Novo email">
+                                </div>
+                                <div class="modal-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Salvar
+                                    </button>
+                                    <button type="button" id="cancelEditModalBtn" class="btn btn-secondary">
+                                        <i class="fas fa-times"></i> Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    
+    <!-- Repositories -->
+    <script src="js/repositories/AuthRepository.js"></script>
+    <script src="js/repositories/PostRepository.js"></script>
+    <script src="js/repositories/UserRepository.js"></script>
+    
+    <!-- Controllers -->
+    <script src="js/controllers/AuthController.js"></script>
+    <script src="js/controllers/FeedController.js"></script>
+    <script src="js/controllers/ProfileController.js"></script>
+    <script src="js/controllers/NavigationController.js"></script>
+    
+    <!-- Main App -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+        });
+    </script>
+</body>
+</html>
